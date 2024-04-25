@@ -1,5 +1,7 @@
 # Ruijie-ePorta-Tool
 
+本项目fork自[Redlnn/Ruijie-ePorta-Tool](https://github.com/Redlnn/Ruijie-ePorta-Tool)，原项目已不再更新，本分支会继续维护。
+
 **本分支是专用于linux版本或不需要界面的windows版本，只保留了最基本的python代码。依赖比较少，不需要poetry进行管理（主要是我安装poetry时各种依赖报错，比较烦）。配置文件的方法和win一样。去掉了一些可视化的提示框，改成最简单的打印。**
 
 一个基于 Python3 的自动登录/断开锐捷 ePorta Web 网页认证的工具（可开关功能，理论支持大部分学校）
