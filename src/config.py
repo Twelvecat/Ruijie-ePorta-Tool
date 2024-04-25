@@ -3,8 +3,6 @@
 
 import sys
 from os.path import dirname, join
-from tkinter.messagebox import showerror, showwarning
-
 import yaml
 
 current_config_version = 3
@@ -65,7 +63,7 @@ headers:
             fp.write(text)
     except Exception as e:
         error_message = f'尝试写入新配置文件时出错\n{e}'
-        showerror(title='错误', message=error_message)
+        print('错误:', error_message)
         exit(1)
 
 
@@ -76,19 +74,19 @@ def read_cfg() -> dict:
             cfg = yaml.safe_load(fp)
     except IOError:
         write_json()
-        showwarning(title='警告', message='配置文件不存在，已生成新配置文件，请填写配置文件后重试!')
+        print('配置文件不存在，已生成新配置文件，请填写配置文件后重试!')
         sys.exit(1)
     except Exception as e:
         error_message = f'尝试读取配置文件时出错\n{e}'
-        showerror(title='错误', message=error_message)
+        print('错误:', error_message)
         sys.exit(1)
 
     config_version = cfg['main'].get('version', 0)
     if config_version < current_config_version:
-        showwarning(title='警告', message='读取配置文件时出错：\n配置文件格式过期，请备份并删除原配置文件后运行本程序重新生成！')
+        print('读取配置文件时出错：\n配置文件格式过期，请备份并删除原配置文件后运行本程序重新生成！')
         sys.exit(1)
     elif config_version > current_config_version:
-        showwarning(title='警告', message='读取配置文件时出错：\n配置文件版本过高，请更新本程序。\n' '如您使用的程序已是最新版本，请勿更改配置文件中"config_version"的值！')
+        print('读取配置文件时出错：\n配置文件版本过高，请更新本程序。\n' '如您使用的程序已是最新版本，请勿更改配置文件中"config_version"的值！')
         sys.exit(1)
 
     for key in cfg:
@@ -96,7 +94,7 @@ def read_cfg() -> dict:
             cfg[key] = str_value(cfg[key])
 
     if cfg['login_data']['userId'] == '00000000000':
-        showwarning(title='警告', message='配置文件未正确填写，请填写配置文件后重试!')
+        print('配置文件未正确填写，请填写配置文件后重试!')
         sys.exit(1)
 
     if cfg['url']['server'][-1] == '/':

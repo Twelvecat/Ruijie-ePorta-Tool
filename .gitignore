@@ -1,6 +1,2 @@
-/.idea/
-/build/
-/dist/
-/src/__pycache__/
-/config.json
-/src/config.json
+/src/config.yml
+/src/__pycache__
