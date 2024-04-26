@@ -44,6 +44,7 @@
 默认只发布 Windows 构建，MacOS和Linux可以直接使用源代码或自行打包使用
 
 如需开机启动，Windows下只需创建一个快捷方式并将其放到 `%appdata%\Microsoft\Windows\Start Menu\Programs\Startup` 文件夹中（复制该地址到资源管理器窗口的地址栏回车即可）
+Linux如需定时运行，可修改autorun脚本，将其添加到crontab中执行。建议每3-5分钟执行一次，若有必要也可以添加到开机自启。
 
 ### Tips
 
@@ -51,13 +52,6 @@
   > Windows 10/11 系统中该选项位于：系统设置 - 网络和 Internet - WLAN - 管理已知网络 - <你所在学校的校园网无线 SSID> - 属性 - 对此网络使用随机地址
 - 如需开机启动可创建快捷方式/符号链接（软链接）并复制到启动目录
 - 可以通过关闭断网功能并添加至任务计划以定期检查防止设备断网 (commit 6e630ff中该功能的表现与之前不同，关闭断网功能后不再判断设备是否联网，每次启动本程序都将尝试联网)
-
-## Build 构建
-
-1. clone 本仓库
-2. 使用 `poetry` 安装依赖（有关 Poetry 是什么或怎么用请看[他们官网](https://python-poetry.org/docs/)）
-3. Windows 直接双击运行 `build.bat` （支持 upx 压缩）
-4. 待命令执行完毕后可在 `dist` 文件夹找到构建好的 exe 文件
 
 ## 局限性
 
